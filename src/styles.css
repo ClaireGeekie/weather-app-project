@@ -9,7 +9,8 @@ form {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 30px;
+  text-decoration: underline;
 }
 
 .selected-location {
