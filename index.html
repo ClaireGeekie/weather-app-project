@@ -21,19 +21,20 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="container mt-5 mx-auto border p-3" style="width: 70%">
       <div class="row headline">
-        <div class="col">
+        <div class="col-6">
           <h1>Weather Forecast</h1>
         </div>
-        <div class="col">
+        <div class="col-6">
           <form>
             <div class="form-group">
               <input
                 type="text"
                 placeholder="Enter a city"
                 autofocus
-                class="form control"
+                class="form-control bg-light"
+                style="--bs-bg-opacity: 0.7"
               />
               <input type="submit" value="Search" class="btn btn-primary" />
             </div>
@@ -41,13 +42,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="card">
+        <div class="card border-0 mb">
           <div class="card-body">
-            <h2 class="card-title">Bristol</h2>
-            <p class="card-text">
-              Wednesday, 30 November 2022 <br />
-              18:00
-            </p>
+            <h2 class="card-title selected-location">
+              Bristol, UK
+              <span class="card-text current-date"
+                >Wednesday, 30 November 2022, 18:00</span
+              >
+            </h2>
           </div>
         </div>
       </div>
@@ -79,9 +81,9 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-header">Wed</div>
-            <img src="media/mist.png" class="weather-icon-1" width="75px" />
+          <div class="card text-center">
+            <div class="card-header future-date">Wed</div>
+            <img src="media/mist.png" class="future-icon" width="75px" />
             <div class="card-body">
               <ul class="card-text">
                 <li><strong>8°C</strong> / 3°C</li>
@@ -91,11 +93,11 @@
           </div>
         </div>
         <div class="col">
-          <div class="card">
-            <div class="card-header">Thu</div>
+          <div class="card text-center">
+            <div class="card-header future-date">Thu</div>
             <img
               src="media/partly-cloudy.png"
-              class="weather-icon-1"
+              class="future-icon"
               width="75px"
             />
             <div class="card-body">
@@ -107,11 +109,11 @@
           </div>
         </div>
         <div class="col">
-          <div class="card">
-            <div class="card-header">Fri</div>
+          <div class="card text-center">
+            <div class="card-header future-date">Fri</div>
             <img
               src="media/partly-cloudy.png"
-              class="weather-icon-1"
+              class="future-icon"
               width="75px"
             />
             <div class="card-body">
@@ -123,11 +125,11 @@
           </div>
         </div>
         <div class="col">
-          <div class="card">
-            <div class="card-header">Sat</div>
+          <div class="card text-center">
+            <div class="card-header future-date">Sat</div>
             <img
               src="media/partly-cloudy.png"
-              class="weather-icon-1"
+              class="future-icon"
               width="75px"
             />
             <div class="card-body">
@@ -139,9 +141,9 @@
           </div>
         </div>
         <div class="col">
-          <div class="card">
-            <div class="card-header">Sun</div>
-            <img src="media/cloudy.png" class="weather-icon-1" width="75px" />
+          <div class="card text-center">
+            <div class="card-header future-date">Sun</div>
+            <img src="media/cloudy.png" class="future-icon" width="75px" />
             <div class="card-body">
               <ul class="card-text">
                 <li><strong>5°C</strong> / 5°C</li>
