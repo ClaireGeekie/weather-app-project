@@ -1,0 +1,11 @@
+.container {
+  font-family: "Roboto", sans-serif;
+}
+
+.headline {
+  font-style: italic;
+}
+
+ul {
+  list-style-type: none;
+}
