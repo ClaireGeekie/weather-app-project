@@ -22,6 +22,14 @@ h1 {
   font-style: italic;
 }
 
+.weather-details-1 {
+  text-align: left;
+}
+
+.alt-metric {
+  font-weight: lighter;
+}
+
 .future-date {
   font-size: 20px;
   font-weight: 600;
