@@ -22,7 +22,7 @@
   </head>
   <body>
     <div class="container mt-5 mx-auto border p-3" style="width: 70%">
-      <div class="row headline">
+      <div class="row headline ms-1">
         <div class="col-6">
           <h1>Weather Forecast</h1>
         </div>
@@ -41,39 +41,31 @@
           </form>
         </div>
       </div>
-      <div class="row">
+      <div class="row ms-1">
         <h2 class="selected-location">
           Bristol, UK
           <span class="current-date">Wednesday, 30 November 2022, 18:00</span>
         </h2>
       </div>
-      <div class="row">
-        <div class="col">
-          <div class="card bg-transparent mb-3">
-            <div class="row g-0">
-              <div class="col-md-1">
-                <img
-                  src="media/mist.png"
-                  class="img-fluid rounded-start current-weather-icon"
-                  alt="mist weather icon"
-                  width="100px"
-                />
-              </div>
-              <div class="col-md-11">
-                <div class="card-body">
-                  <h5 class="card-title">Fog 7°C</h5>
-                  <ul class="card-text">
-                    <li>Precipitation: 3%</li>
-                    <li>Humidity: 94%</li>
-                    <li>Wind: 4mph</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="row ms-1 my-3">
+        <div class="col-2">
+          <img src="media/mist.png" alt="mist weather icon" width="100px" />
+        </div>
+        <div class="col-2 my-3 weather-details-1">
+          <h3>
+            Fog <br />
+            11°C <span class="alt-metric"> / °F </span>
+          </h3>
+        </div>
+        <div class="col-8 my-3 weather-details-2">
+          <ul>
+            <li>Precipitation: 3%</li>
+            <li>Humidity: 94%</li>
+            <li>Wind: 4mph</li>
+          </ul>
         </div>
       </div>
-      <div class="row">
+      <div class="row ms-1">
         <div class="col">
           <div class="card text-center">
             <div class="card-header future-date">Wed</div>
