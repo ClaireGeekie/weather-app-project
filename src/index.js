@@ -22,3 +22,30 @@ let weather = {
 };
 
 let city = prompt("Please enter a city");
+city = city.toLowerCase();
+
+if (city === "paris") {
+  alert(
+    `It is currently ${weather.paris.temp}°C in Paris with a humidity of ${weather.paris.humidity}%`
+  );
+} else if (city === "tokyo") {
+  alert(
+    `It is currently ${weather.tokyo.temp}°C in Tokyo with a humidity of ${weather.tokyo.humidity}%`
+  );
+} else if (city === "lisbon") {
+  alert(
+    `It is currently ${weather.lisbon.temp}°C in Lisbon with a humidity of ${weather.lisbon.humidity}%`
+  );
+} else if (city === "san francisco") {
+  alert(
+    `It is currently ${weather["san francisco"].temp}°C in San Francisco with a humidity of ${weather["san francisco"].humidity}%`
+  );
+} else if (city === "oslo") {
+  alert(
+    `It is currently ${weather.oslo.temp}°C in Oslo with a humidity of ${weather.oslo.humidity}%`
+  );
+} else {
+  alert(
+    `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
+  );
+}
