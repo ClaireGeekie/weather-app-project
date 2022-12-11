@@ -24,28 +24,17 @@ let weather = {
 let city = prompt("Please enter a city");
 city = city.toLowerCase();
 
-if (city === "paris") {
+if (weather[city] !== undefined) {
+  let temperature = weather[city].temp;
+  let celsiusTemp = Math.round(temperature);
+  let fahrenheitTemp = Math.round((temperature * 9) / 5 + 32);
+  let humidity = weather[city].humidity;
+
   alert(
-    `It is currently ${weather.paris.temp}°C in Paris with a humidity of ${weather.paris.humidity}%`
-  );
-} else if (city === "tokyo") {
-  alert(
-    `It is currently ${weather.tokyo.temp}°C in Tokyo with a humidity of ${weather.tokyo.humidity}%`
-  );
-} else if (city === "lisbon") {
-  alert(
-    `It is currently ${weather.lisbon.temp}°C in Lisbon with a humidity of ${weather.lisbon.humidity}%`
-  );
-} else if (city === "san francisco") {
-  alert(
-    `It is currently ${weather["san francisco"].temp}°C in San Francisco with a humidity of ${weather["san francisco"].humidity}%`
-  );
-} else if (city === "oslo") {
-  alert(
-    `It is currently ${weather.oslo.temp}°C in Oslo with a humidity of ${weather.oslo.humidity}%`
+    `It is currently ${celsiusTemp}°C (${fahrenheitTemp}°F) in ${city} with a humidity of ${humidity}%`
   );
 } else {
   alert(
-    `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
+    `Sorry we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
   );
 }
