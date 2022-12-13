@@ -28,22 +28,28 @@
         </div>
         <div class="col-6">
           <form>
-            <div class="form-group">
+            <div class="form-group" id="city-search-form">
               <input
                 type="text"
                 placeholder="Enter a city"
                 autofocus
                 class="form-control bg-light"
                 style="--bs-bg-opacity: 0.7"
+                id="city-input"
               />
-              <input type="submit" value="Search" class="btn btn-primary" />
+              <input
+                type="submit"
+                value="Search"
+                class="btn btn-primary"
+                id="search-button"
+              />
             </div>
           </form>
         </div>
       </div>
       <div class="row ms-1">
-        <h2 class="selected-location">
-          Bristol, UK
+        <h2>
+          <span class="selected-location" id="searched-city">Bristol, UK</span>
           <span class="current-date" id="current-date"
             >Wednesday, 30 November 2022, 18:00</span
           >
