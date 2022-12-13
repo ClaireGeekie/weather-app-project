@@ -33,13 +33,12 @@ function formatDateTime(dateToFormat) {
   return `It is currently ${day}, ${month} ${date} ${year}, at ${hour}:${minute}:${second}`;
 }
 
-let now = document.querySelector("#current-date");
-now.innerHTML = formatDateTime(new Date());
-
 function searchCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
   let searchedCity = document.querySelector("#searched-city");
+  let now = document.querySelector("#current-date");
+  now.innerHTML = formatDateTime(new Date());
 
   if (cityInput.value !== "") {
     searchedCity.innerHTML = cityInput.value;
@@ -48,5 +47,25 @@ function searchCity(event) {
   }
 }
 
+function changeToFahrenheit(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temperature");
+
+  temperature.innerHTML = 52;
+}
+
+function changeToCelsius(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temperature");
+
+  temperature.innerHTML = 11;
+}
+
 let form = document.querySelector("#search-button");
 form.addEventListener("click", searchCity);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", changeToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", changeToCelsius);
