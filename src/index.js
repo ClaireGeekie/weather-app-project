@@ -40,7 +40,12 @@ function searchCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
   let searchedCity = document.querySelector("#searched-city");
-  searchedCity.innerHTML = cityInput.value;
+
+  if (cityInput.value !== "") {
+    searchedCity.innerHTML = cityInput.value;
+  } else {
+    cityInput.placeholder = "Please enter a city first";
+  }
 }
 
 let form = document.querySelector("#search-button");
