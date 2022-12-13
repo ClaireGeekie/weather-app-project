@@ -35,3 +35,13 @@ function formatDateTime(dateToFormat) {
 
 let now = document.querySelector("#current-date");
 now.innerHTML = formatDateTime(new Date());
+
+function searchCity(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  let searchedCity = document.querySelector("#searched-city");
+  searchedCity.innerHTML = cityInput.value;
+}
+
+let form = document.querySelector("#search-button");
+form.addEventListener("click", searchCity);
