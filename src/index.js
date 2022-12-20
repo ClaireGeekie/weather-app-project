@@ -42,8 +42,6 @@ function searchCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
   let searchedCity = document.querySelector("#searched-city");
-  let now = document.querySelector("#current-date");
-  now.innerHTML = formatDateTime(new Date());
 
   if (cityInput.value !== "") {
     searchedCity.innerHTML = cityInput.value;
@@ -74,3 +72,6 @@ fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeToCelsius);
+
+let now = document.querySelector("#current-date");
+now.innerHTML = formatDateTime(new Date());
