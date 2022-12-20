@@ -27,10 +27,15 @@ function formatDateTime(dateToFormat) {
   ];
   let month = months[dateToFormat.getMonth()];
   let hour = dateToFormat.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
   let minute = dateToFormat.getMinutes();
-  let second = dateToFormat.getSeconds();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
 
-  return `It is currently ${day}, ${month} ${date} ${year}, at ${hour}:${minute}:${second}`;
+  return `It is currently ${day}, ${month} ${date} ${year}, at ${hour}:${minute}`;
 }
 
 function searchCity(event) {
