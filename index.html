@@ -19,6 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container mt-5 mx-auto border p-3" style="width: 70%">
@@ -69,20 +70,20 @@
         </div>
         <div class="col-2 my-3 weather-details-1">
           <h3>
-            <span id="temperature">11</span>
+            <span id="current-temperature">11</span>
             <span id="current-temp-units"
               ><a href="#" id="celsius-link">°C</a> |
               <a href="#" id="fahrenheit-link">°F</a>
             </span>
             <br />
-            Fog
+            <span id="current-description">Fog</span>
           </h3>
         </div>
         <div class="col-7 my-3 weather-details-2">
           <p>
-            Precipitation: 3% <br />
-            Humidity: 94% <br />
-            Wind: 4mph
+            <span id="current-precipitation">Precipitation: 3%</span><br />
+            <span id="current-humidity">Humidity: 94%</span><br />
+            <span id="current-wind">Wind: 4mph</span>
           </p>
         </div>
       </div>
