@@ -19,42 +19,48 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container mt-5 mx-auto border p-3" style="width: 70%">
+    <div class="container mt-5 mx-auto border p-3" style="width: 80%">
       <div class="row headline ms-1">
-        <div class="col-6">
+        <div class="col-12">
           <h1>Weather Forecast</h1>
         </div>
-        <div class="col-6">
-          <form>
-            <div class="form-group" id="city-search-form">
-              <input
-                type="text"
-                placeholder="Enter a city"
-                autofocus
-                class="form-control bg-light"
-                style="--bs-bg-opacity: 0.7"
-                id="city-input"
-              />
-              <input
-                type="submit"
-                value="Search"
-                class="btn btn-primary"
-                id="search-button"
-              />
-            </div>
-          </form>
+      </div>
+      <form class="form-group" id="city-search-form">
+        <div class="row">
+          <div class="col-6">
+            <input
+              type="text"
+              placeholder="Enter a city"
+              autofocus
+              class="form-control bg-light"
+              style="--bs-bg-opacity: 0.7"
+              id="city-input"
+            />
+          </div>
+          <div class="col-3">
+            <input
+              type="submit"
+              value="Search"
+              class="btn btn-primary w-100"
+              id="search-button"
+            />
+          </div>
+          <div class="col-3">
+            <button class="btn btn-success w-100" id="current-location-button">
+              Local Weather
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="row ms-1">
-        <h2>
-          <span class="selected-location" id="searched-city">Bristol, UK</span>
-          <span class="current-date" id="current-date"
-            >Wednesday, 30 November 2022, 18:00</span
-          >
-        </h2>
-      </div>
+      </form>
+      <h2>
+        <span class="selected-location" id="searched-city">Bristol, UK</span>
+        <span class="current-date" id="current-date"
+          >Wednesday, 30 November 2022, 18:00</span
+        >
+      </h2>
       <div
         class="row ms-3 me-1 my-3 rounded-2 bg-light"
         style="--bs-bg-opacity: 0.3"
@@ -69,20 +75,19 @@
         </div>
         <div class="col-2 my-3 weather-details-1">
           <h3>
-            <span id="temperature">11</span>
+            <span id="current-temperature">11</span>
             <span id="current-temp-units"
               ><a href="#" id="celsius-link">°C</a> |
               <a href="#" id="fahrenheit-link">°F</a>
             </span>
             <br />
-            Fog
+            <span id="current-description">Fog</span>
           </h3>
         </div>
         <div class="col-7 my-3 weather-details-2">
           <p>
-            Precipitation: 3% <br />
-            Humidity: 94% <br />
-            Wind: 4mph
+            Humidity: <span id="current-humidity">94%</span><br />
+            Wind: <span id="current-wind">4mph</span>
           </p>
         </div>
       </div>
