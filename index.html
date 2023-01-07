@@ -55,12 +55,14 @@
           </div>
         </div>
       </form>
-      <h2>
-        <span class="selected-location" id="searched-city">Bristol, UK</span>
-        <span class="current-date" id="current-date"
-          >Wednesday, 30 November 2022, 18:00</span
-        >
-      </h2>
+      <div class="row ms-3">
+        <h2>
+          <span class="selected-location" id="searched-city">Bristol, UK</span>
+          <span class="current-date" id="current-date"
+            >Wednesday, 30 November 2022, 18:00</span
+          >
+        </h2>
+      </div>
       <div
         class="row ms-3 me-1 my-3 rounded-2 bg-light"
         style="--bs-bg-opacity: 0.3"
@@ -92,76 +94,18 @@
           </p>
         </div>
       </div>
-      <div class="row ms-1">
-        <div class="col">
-          <div class="card text-center">
-            <div class="card-header future-date">Wed</div>
-            <img src="media/mist.png" class="future-icon" width="75px" />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>8°C</strong> / 3°C</li>
-                <li class="list-group-item">Mist</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-center">
-            <div class="card-header future-date">Thu</div>
-            <img
-              src="media/partly-cloudy.png"
-              class="future-icon"
-              width="75px"
-            />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>6°C</strong> / 3°C</li>
-                <li class="list-group-item">Partly cloudy</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-center">
-            <div class="card-header future-date">Fri</div>
-            <img
-              src="media/partly-cloudy.png"
-              class="future-icon"
-              width="75px"
-            />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>7°C</strong> / 3°C</li>
-                <li class="list-group-item">Partly cloudy</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-center">
-            <div class="card-header future-date">Sat</div>
-            <img
-              src="media/partly-cloudy.png"
-              class="future-icon"
-              width="75px"
-            />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>7°C</strong> / 2°C</li>
-                <li class="list-group-item">Partly cloudy</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-center">
-            <div class="card-header future-date">Sun</div>
-            <img src="media/cloudy.png" class="future-icon" width="75px" />
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>5°C</strong> / 5°C</li>
-                <li class="list-group-item">Cloudy</li>
-              </ul>
+      <div class="weather-forecast">
+        <div class="row ms-1">
+          <div class="col-2">
+            <div class="card text-center">
+              <div class="card-header future-date">Wed</div>
+              <img src="media/mist.png" class="future-icon" width="75px" />
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>8°C</strong> / 3°C</li>
+                  <li class="list-group-item">Mist</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
