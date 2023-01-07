@@ -1,6 +1,6 @@
-function formatDateTime(dateToFormat) {
-  let year = dateToFormat.getFullYear();
-  let date = dateToFormat.getDate();
+function formatDate(timestamp) {
+  let year = timestamp.getFullYear();
+  let date = timestamp.getDate();
   let days = [
     "Sunday",
     "Monday",
@@ -10,7 +10,7 @@ function formatDateTime(dateToFormat) {
     "Friday",
     "Saturday",
   ];
-  let day = days[dateToFormat.getDay()];
+  let day = days[timestamp.getDay()];
   let months = [
     "January",
     "February",
@@ -25,73 +25,93 @@ function formatDateTime(dateToFormat) {
     "November",
     "December",
   ];
-  let month = months[dateToFormat.getMonth()];
-  let hour = dateToFormat.getHours();
+  let month = months[timestamp.getMonth()];
+  let hour = timestamp.getHours();
   if (hour < 10) {
     hour = `0${hour}`;
   }
-  let minute = dateToFormat.getMinutes();
+  let minute = timestamp.getMinutes();
   if (minute < 10) {
     minute = `0${minute}`;
   }
-
-  return `Last updated ${day}, ${month} ${date} ${year}, at ${hour}:${minute}`;
+  return `Last updated: ${day}, ${date} ${month} ${year}, at ${hour}:${minute}`;
 }
 
-function getSearchedPosition(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  getWeather(city);
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="forecast-date">${day}</div>
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png"
+          width="54px"
+        />
+        <div class="forecast-temperatures">
+          <span class="forecast-temp-max"> 18° </span>
+          <span class="forecast-temp-min"> 12° </span>
+        </div>
+        <div class="forecast-description" id="forecastDescription">
+          Cloudy
+        </div>
+      </div>
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecast.innerHTML = forecastHTML;
 }
 
-function getWeather(city) {
-  let apiKey = "a7bd404387b79725fa33852fc451a93b";
-  let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function displayWeather(response) {
+  document.querySelector("#city").innerHTML = response.data.city;
 
-  axios.get(weatherURL).then(displaySearchedWeather);
-}
+  document.querySelector("#temperature").innerHTML = Math.round(
+    response.data.temperature.current
+  );
+  document.querySelector("#current-description").innerHTML =
+    response.data.condition.description;
 
-function displaySearchedWeather(response) {
-  document.querySelector("#searched-city").innerHTML = response.data.name;
+  document.querySelector("#humidity").innerHTML =
+    response.data.temperature.humidity;
 
-  celsiusTemp = response.data.main.temp;
-
-  document.querySelector("#current-temperature").innerHTML =
-    Math.round(celsiusTemp);
-
-  document.querySelector("#current-humidity").innerHTML =
-    response.data.main.humidity;
-
-  document.querySelector("#current-humidity").innerHTML = Math.round(
+  document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
 
-  document.querySelector("#current-description").innerHTML =
-    response.data.weather[0].main;
-
-  let icon = document.querySelector("#current-weather-icon");
+  let icon = document.querySelector("#current-icon");
   icon.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  celsiusTemp = response.data.temperature.current;
 }
 
-function retrieveLocation(event) {
+function search(city) {
+  let apiKey = "6388f1440964o89a833d5fftb7d99ca1";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function handleSubmit(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
-}
+  let cityInput = document.querySelector("#city-input");
 
-function searchLocation(position) {
-  let apiKey = "a7bd404387b79725fa33852fc451a93b";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiURL).then(displaySearchedWeather);
+  search(cityInput.value);
 }
 
 function changeToFahrenheit(event) {
   event.preventDefault();
   let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-  document.querySelector("#current-temperature").innerHTML = fahrenheitTemp;
+  document.querySelector("#temperature").innerHTML = fahrenheitTemp;
 
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
@@ -99,15 +119,14 @@ function changeToFahrenheit(event) {
 
 function changeToCelsius(event) {
   event.preventDefault();
-  document.querySelector("#current-temperature").innerHTML =
-    Math.round(celsiusTemp);
+  document.querySelector("#temperature").innerHTML = Math.round(celsiusTemp);
 
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 }
 
 let form = document.querySelector("#search-button");
-form.addEventListener("click", getSearchedPosition);
+form.addEventListener("click", handleSubmit);
 
 let celsiusTemp = null;
 
@@ -117,8 +136,7 @@ fahrenheitLink.addEventListener("click", changeToFahrenheit);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeToCelsius);
 
-let now = document.querySelector("#current-date");
-now.innerHTML = formatDateTime(new Date());
+document.querySelector("#current-date").innerHTML = formatDate(new Date());
 
-let localWeatherButton = document.querySelector("#current-location-button");
-localWeatherButton.addEventListener("click", retrieveLocation);
+search("Bristol");
+displayForecast();
