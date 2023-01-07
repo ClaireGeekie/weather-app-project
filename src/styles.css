@@ -1,6 +1,7 @@
 .container {
   font-family: "Roboto", sans-serif;
   background-color: #d1e1e3;
+  color: #28282b;
 }
 
 h1,
@@ -26,6 +27,11 @@ h1 {
   text-align: left;
 }
 
+.weather-details-1 .link {
+  text-decoration: none;
+  color: #616262;
+}
+
 .alt-metric {
   font-weight: lighter;
 }
@@ -39,4 +45,13 @@ h1 {
 .future-icon {
   display: block;
   margin: 10px auto 0px auto;
+}
+
+.weather-details-1 .active {
+  color: #28282b;
+  cursor: default;
+}
+
+.weather-details-1 .active:hover {
+  text-decoration: none;
 }
