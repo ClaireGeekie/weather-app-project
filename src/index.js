@@ -35,7 +35,7 @@ function formatDateTime(dateToFormat) {
     minute = `0${minute}`;
   }
 
-  return `It is currently ${day}, ${month} ${date} ${year}, at ${hour}:${minute}`;
+  return `Last updated ${day}, ${month} ${date} ${year}, at ${hour}:${minute}`;
 }
 
 function getSearchedPosition(event) {
@@ -67,6 +67,14 @@ function displaySearchedWeather(response) {
 
   document.querySelector("#current-description").innerHTML =
     response.data.weather[0].main;
+
+  let icon = document.querySelector("#current-weather-icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+
+  console.log(response.data);
 }
 
 function retrieveLocation(event) {
