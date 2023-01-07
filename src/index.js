@@ -37,36 +37,59 @@ function formatDate(timestamp) {
   return `Last updated: ${day}, ${date} ${month} ${year}, at ${hour}:${minute}`;
 }
 
-function displayForecast() {
-  let forecast = document.querySelector("#forecast");
+function formarForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
   let days = ["Sun", "Mon", "Tue"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col-2">
-        <div class="forecast-date">${day}</div>
-        <img
-          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png"
-          width="54px"
-        />
-        <div class="forecast-temperatures">
-          <span class="forecast-temp-max"> 18° </span>
-          <span class="forecast-temp-min"> 12° </span>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col-2">
+          <div class="forecast-date">${formarForecastDay(
+            forecastDay.time
+          )}</div>
+          <img
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              forecastDay.condition.icon
+            }.png"
+            width="54px"
+          />
+          <div class="forecast-temperatures">
+            <span class="forecast-temp-max"> ${Math.round(
+              forecastDay.temperature.maximum
+            )}° </span>
+            <span class="forecast-temp-min"> ${Math.round(
+              forecastDay.temperature.minimum
+            )}° </span>
+          </div>
         </div>
-        <div class="forecast-description" id="forecastDescription">
-          Cloudy
-        </div>
-      </div>
-    `;
+      `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
 
-  forecast.innerHTML = forecastHTML;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(location) {
+  let apiKey = "6388f1440964o89a833d5fftb7d99ca1";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${location.longitude}&lat=${location.latitude}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeather(response) {
@@ -91,7 +114,9 @@ function displayWeather(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 
-  celsiusTemp = response.data.temperature.current;
+  // celsiusTemp = response.data.temperature.current;
+
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -108,33 +133,33 @@ function handleSubmit(event) {
   search(cityInput.value);
 }
 
-function changeToFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-  document.querySelector("#temperature").innerHTML = fahrenheitTemp;
+// function changeToFahrenheit(event) {
+//   event.preventDefault();
+//   let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+//   document.querySelector("#temperature").innerHTML = fahrenheitTemp;
 
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-}
+//   celsiusLink.classList.remove("active");
+//   fahrenheitLink.classList.add("active");
+// }
 
-function changeToCelsius(event) {
-  event.preventDefault();
-  document.querySelector("#temperature").innerHTML = Math.round(celsiusTemp);
+// function changeToCelsius(event) {
+//   event.preventDefault();
+//   document.querySelector("#temperature").innerHTML = Math.round(celsiusTemp);
 
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-}
+//   fahrenheitLink.classList.remove("active");
+//   celsiusLink.classList.add("active");
+// }
 
 let form = document.querySelector("#search-button");
 form.addEventListener("click", handleSubmit);
 
-let celsiusTemp = null;
+// let celsiusTemp = null;
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", changeToFahrenheit);
+// let fahrenheitLink = document.querySelector("#fahrenheit-link");
+// fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", changeToCelsius);
+// let celsiusLink = document.querySelector("#celsius-link");
+// celsiusLink.addEventListener("click", changeToCelsius);
 
 document.querySelector("#current-date").innerHTML = formatDate(new Date());
 
